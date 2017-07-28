@@ -47,7 +47,7 @@
       min-height: 100%;
     }
 
-    button {
+    .download-area a {
       background-color: #FF5252;
       color: #fff;
       box-shadow: 2px 3px 11px rgba(0, 0, 0, 0.2);
@@ -57,9 +57,11 @@
       font-size: 22px;
       margin: 5px;
       transition: all 0.1s;
+      display: inline-block;
+      text-decoration: none;
     }
 
-    button:hover {
+    .download-area a:hover {
       cursor: pointer;
       padding: 25px;
       margin-top: 0;
@@ -91,58 +93,11 @@
     <section class="default-primary-color">
       <h1 class="text-primary-color">NoteWiki</h1>
       <h2 class="light-primary-text-color">Organize your notes better.</h2>
-      <div class="download-area"></div>
+      <div class="download-area">
+        <a href="https://github.com/abejfehr/notewiki-app/releases/download/v0.0.1/NoteWiki-0.0.1.dmg">macOS</a>
+        <a href="https://github.com/abejfehr/notewiki-app/releases/download/v0.0.1/NoteWiki.0.0.1.exe">Windows</a>
+      </div>
       <img src="screenshot.png">
     </section>
-    <script>
-
-function downloadURL(uri) {
-  const link = document.createElement('a');
-  link.href = uri;
-  link.click();
-}
-
-// Simply returns 'mac', 'windows', or 'other'
-function osDetect() {
-  if (navigator.platform.indexOf('Mac') > -1) {
-    return 'mac';
-  } else if (navigator.platform.indexOf('Win') > -1) {
-    return 'windows';
-  } else {
-    return 'other';
-  }
-}
-
-function createDownloadButton(text, url) {
-  const button = document.createElement('button');
-  button.innerText = text;
-  button.addEventListener('click', downloadURL.bind(this, url));
-
-  const downloadArea = document.querySelector('.download-area');
-  downloadArea.append(button);
-}
-
-function noDownloadAvailable() {
-  const p = document.createElement('p');
-  p.innerText = 'Sorry! NoteWiki isn\'t available for your platform yet 😞';
-
-  const downloadArea = document.querySelector('.download-area');
-  downloadArea.append(p);
-}
-
-(function createButtonBasedOnPlatform() {
-  switch (osDetect()) {
-    case 'mac':
-      createDownloadButton('Download NoteWiki for macOS', 'https://github.com/abejfehr/notewiki-app/releases/download/v0.0.1/NoteWiki-0.0.1.dmg');
-      break;
-    case 'windows':
-      createDownloadButton('Download NoteWiki for Windows', 'https://github.com/abejfehr/notewiki-app/releases/download/v0.0.1/NoteWiki.0.0.1.exe');
-      break;
-    case 'other':
-      noDownloadAvailable();
-      break;
-  }
-})();
-    </script>
   </body>
 </html>
